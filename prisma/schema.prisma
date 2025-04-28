@@ -1,0 +1,68 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "./node_modules/@prisma/client" 
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Category{
+  catid Int @id @default(autoincrement())
+categoryName String @unique
+ products     Product[] 
+}
+
+model Product{
+  id Int  @id @default(autoincrement())
+  productname       String 
+  description      String 
+  color String
+  size String
+  price      Float
+  catid  Int 
+  productimageUrl  String  // Store image URL as a string
+  category   Category @relation(fields: [catid ], references: [catid ])
+}
+
+model User {
+  // internal primary key
+  id            String           @id @default(cuid())
+  // Clerk’s user ID (so you can re‐hydrate with Clerk on sign‐in)
+  clerkUserId   String           @unique
+  email         String?
+  phone         String?
+  firstName     String?
+  lastName      String?
+  createdAt     DateTime         @default(now())
+
+  // one user → many razorpay orders
+  orders        RazorpayOrder[]
+}
+
+
+/// A record of a Razorpay payment/order
+model RazorpayOrder {
+  // internal primary key
+  id            String           @id @default(cuid())
+  // Razorpay’s payment ID (e.g. "pay_QOMY2qWsbRfwB4")
+  razorpayId    String           @unique
+  amount        Int              // e.g. amount in paise (₹67000 → 67000)
+  currency      String           // e.g. "INR"
+  status        String           // e.g. "authorized", "captured", etc.
+  method        String?
+  bank          String?
+  vpa           String?
+  createdAt     DateTime         @default(now())
+
+  // link back to User
+  userId        String
+  user          User             @relation(fields: [userId], references: [id])
+}
