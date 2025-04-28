@@ -1,2 +1,10 @@
-id_rsa
-id_rsa.pub
+# Ignore node_modules, build files, and environment variables for Next.js
+node_modules/
+.next/
+dist/
+.env
+.env.local
+
+# Optionally add SSH keys if necessary
+# id_rsa
+# id_rsa.pub
