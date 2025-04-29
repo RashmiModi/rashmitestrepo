@@ -7,7 +7,7 @@ import ImageUpload from "@/components/ImageUpload";
 export default function EditProductPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const id = searchParams.get('id'); // get id from query param
+  const id = searchParams?.get('id'); // get id from query param
   const [categories, setCategories] = useState<{ id: string, categoryName: string }[]>([]);
 
   const [form, setForm] = useState({
@@ -45,11 +45,13 @@ export default function EditProductPage() {
   }, [id]);
 
 
-  const handleChange = (e:any) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e:any) => {
+  const handleSubmit = async (e:React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const res = await fetch(`/api/product/${id}`, {

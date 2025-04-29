@@ -1,10 +1,10 @@
 "use server";
 
-import { PrismaClient, Prisma } from '@prisma/client'
+import { PrismaClient } from '@prisma/client'
 import  Link  from 'next/link';
 import { Key, Pencil} from 'lucide-react'
 import { Trash } from 'lucide-react';
-import { deleteCategory } from '../delete/deletecategory';
+//import { deleteCategory } from '../delete/deletecategory';
 const Category =async () => { 
   const categoryAll=await getAllCategory();
     return (
@@ -61,11 +61,10 @@ const Category =async () => {
       const formcategory= Object.fromEntries(data.entries());
           
       await prisma.category.create({
-        data:{
-          categoryName :formcategory.productcategory,
-        }
-
-     })         
+        data: {
+          categoryName: formcategory.productcategory as string,
+        },
+      });        
   console.log({formcategory});
   }  
    

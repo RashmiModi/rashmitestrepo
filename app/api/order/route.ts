@@ -1,17 +1,17 @@
 // pages/api/transactions.ts
 
-import type { NextApiRequest, NextApiResponse } from 'next';
+//import type { NextApiRequest, NextApiResponse } from 'next';
 
 import { getAuth } from '@clerk/nextjs/server';
 import { PrismaClient } from '@prisma/client';
-
+import { NextRequest } from 'next/server';
 export const prisma = new PrismaClient();
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export async function POST(req: NextRequest) {
 
-    const { userId } = getAuth(req);
-  if (!userId) {
-    return res.status(401).json({ error: 'Unauthorized' });
-  }
+   const { userId } = getAuth(req);
+if (userId == null) {
+  //return res.status(401).json({ error: 'Unauthorized' });
+}
   const RAZORPAY_KEY_ID = process.env.RAZORPAY_KEY_ID;
   const RAZORPAY_KEY_SECRET = process.env.RAZORPAY_KEY_SECRET;
 
@@ -27,14 +27,18 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     if (!response.ok) {
       const errorText = await response.text();
       console.error('Error fetching payments:', errorText);
-      return res.status(500).json({ error: 'Failed to fetch payments' });
+      //return res.status(500).json({ error: 'Failed to fetch payments' });
     }
 
-    const data = await response.json();
+    //const data = await response.json();
 
   
-  } catch (error) {
-    console.error('Error upserting payments:', error);
-    res.status(500).json({ error: 'Internal server error' });
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      console.error('Error upserting payments:', error.message);
+    } else {
+      console.error('Unexpected error:', error);
+    }
+    //res.status(500).json({ error: 'Internal server error' });
   }
 }

@@ -53,7 +53,7 @@ export default function CheckoutPage() {
       name: "ECOM",
       description: "Purchase Products",
       image: "https://yourstore.com/logo.png", // optional
-      handler: function (response: any) {
+      handler: function (response: Response) {
         console.log(response);
         alert("Payment Successful!");
         router.push('/shop');
@@ -70,7 +70,7 @@ export default function CheckoutPage() {
       },
     };
   
-    const rzp1 = new (window as any).Razorpay(options);
+    const rzp1 = new window.Razorpay(options);
     rzp1.open();
   };
   return (

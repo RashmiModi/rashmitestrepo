@@ -2,7 +2,7 @@ import React from 'react'
 import Link  from 'next/link'
 import { Pencil } from 'lucide-react'
 import { Trash } from 'lucide-react'
-import { getCategory } from '@/app/productcategory/db'
+//import { getCategory } from '@/app/productcategory/db'
 export const ButtonAction = () => {
   return (
     <div>

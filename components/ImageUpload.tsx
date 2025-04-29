@@ -24,8 +24,7 @@ alert('Image uploaded successfully..!!}');
 }
 
 onUploadError={(error) => {
-
-alert('ERROR! ${error.message}');
+  alert(`ERROR! ${error.message}`);
 }}
 onUploadProgress={(p) => setProgress(p)}
 appearance={{

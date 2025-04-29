@@ -20,8 +20,8 @@ export const editCategory=async(data:any) =>{
   };
 
 */
-  export const getCategory=async(catid:any) =>{
-    let id=Number(catid);
+  export const getCategory=async(catid:number) =>{
+    const id=Number(catid);
     const info= await prisma.category.findUnique({
     
       where: {

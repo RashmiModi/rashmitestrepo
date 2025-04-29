@@ -31,7 +31,7 @@ export default function AddProductPage() {
 
     fetchCategories();
   }, [router]);
-  const [selectedSize, setSelectedSize] = useState('S'); // Default value
+  //const [selectedSize, setSelectedSize] = useState('S'); // Default value
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };

@@ -1,13 +1,7 @@
 // components/Hero.jsx
-import Image from "next/image";
+
 const Hero = () => {
     return (
-     
-
-
-         
-          
-        
 
 <div className="hero">
 <div className=" relative w-screen h-screen"> 

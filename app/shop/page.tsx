@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
-
+import Image from 'next/image';
 type Product = {
   id: number;
   productname: string;
@@ -96,10 +96,10 @@ export default function ProductsPage() {
       <div className="mt-20 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
         {filteredProducts.map((product) => (
           <div key={product.id} className="w-70 h-100 bg-white shadow-md rounded-lg overflow-hidden">
-            <img
+            <Image
               src={product.productimageUrl}
               alt={product.productname}
-              className="w-full h-48 object-cover"
+              className="w-full h-48 object-cover" width={20} height={20}
             />
             <div className="p-4 flex justify-between items-start gap-4">
               <div className="flex-1">

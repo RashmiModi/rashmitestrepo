@@ -26,7 +26,7 @@ export async function GET() {
 export async function POST(request: NextRequest) {
   const body = await request.json();
   const { productname, description, price, catid, productimageUrl,color,size } = body;
-  const product = await prisma.product.create(
+   await prisma.product.create(
     { 
        data: {
          productname,

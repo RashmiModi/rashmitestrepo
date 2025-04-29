@@ -1,15 +1,15 @@
 "use client"
 import Link from 'next/link';
-import { checkRole } from '@/utils/roles'
-import React, { useEffect, useState } from "react";
-import { SignedOut, UserButton, SignedIn, useSession } from '@clerk/nextjs';
+//import { checkRole } from '@/utils/roles'
+import React from "react";
+//import { SignedOut, UserButton, SignedIn, useSession } from '@clerk/nextjs';
 const Navbar = () => {
-  const links = [
+  /*const links = [
     { title: 'Category', url: '/productcategory' },
     { title: 'Dashboard', url: '/user' },
     { title: 'Admin Dashboard', url: '/admin', role: 'admin' },
     
-  ];
+  ];*/
  
   return (
 
@@ -17,7 +17,7 @@ const Navbar = () => {
     <header className='text-gray-600 body-font bg-white shadow'>
       <div className='container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center justify-between'>
         <div className='flex items-center'>
-          <a
+          <Link
             href='/'
             className='flex title-font font-medium items-center text-gray-900'
           >
@@ -34,7 +34,7 @@ const Navbar = () => {
               <path d='M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5'></path>
             </svg>
             <span className='ml-3 text-xl'>SecureClerk</span>
-          </a>
+          </Link>
         </div>
         <nav className='md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center'>
           <Link href='/productcategory'>
@@ -55,16 +55,16 @@ const Navbar = () => {
           {/* Add more links directly here as needed */}
         </nav>
         <div className='md:flex items-center'>
-          <a href='/sign-in'>
+          <Link href='/sign-in'>
             <button className='text-white bg-indigo-500 border-0 py-2 px-4 focus:outline-none hover:bg-indigo-600 rounded text-base mr-4'>
               Login
             </button>
-          </a>
-          <a href='/sign-up'>
+          </Link>
+          <Link href='/sign-up'>
             <button className='text-white bg-indigo-500 border-0 py-2 px-4 focus:outline-none hover:bg-indigo-600 rounded text-base'>
               Sign Up
             </button>
-          </a>
+          </Link>
           
         </div>
       </div>
