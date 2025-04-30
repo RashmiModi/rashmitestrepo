@@ -66,7 +66,7 @@ export default function ProductDetailPage({ params }: Props) {
       <Image
         src={product.productimageUrl}
         alt={product.productname}
-        className="w-full h-64 object-cover rounded"
+        className="w-full h-64 object-cover rounded" width={40} height={50}
       />
       <p className="mt-4 text-lg">{product.description}</p>
       <p className="mt-2 text-xl font-bold">₹{product.price}</p>
