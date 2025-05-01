@@ -54,7 +54,7 @@ export default function ProductsPage() {
             <Image
               src={product.productimageUrl}
               alt={product.productname}
-              className=" flex justify-center items-center w-40 h-50 object-cover"
+              className=" flex justify-center items-center w-40 h-50 object-cover" width={40}  height={40}
             />
             <div className="p-4 flex justify-between items-start gap-4">
             <div className="flex-1">

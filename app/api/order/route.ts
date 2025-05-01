@@ -1,19 +1,26 @@
-// pages/api/transactions.ts
-
-//import type { NextApiRequest, NextApiResponse } from 'next';
-
-import { getAuth } from '@clerk/nextjs/server';
-import { PrismaClient } from '@prisma/client';
+// File: app/api/transactions/route.ts
 import { NextRequest } from 'next/server';
-export const prisma = new PrismaClient();
-export async function POST(req: NextRequest) {
+import { getAuth } from '@clerk/nextjs/server';
 
-   const { userId } = getAuth(req);
-if (userId == null) {
-  //return res.status(401).json({ error: 'Unauthorized' });
-}
+export async function POST(req: NextRequest) {
+  const { userId } = getAuth(req);
+  
+  if (!userId) {
+    return new Response(JSON.stringify({ error: 'Unauthorized' }), {
+      status: 401,
+      headers: { 'Content-Type': 'application/json' }
+    });
+  }
+
   const RAZORPAY_KEY_ID = process.env.RAZORPAY_KEY_ID;
   const RAZORPAY_KEY_SECRET = process.env.RAZORPAY_KEY_SECRET;
+
+  if (!RAZORPAY_KEY_ID || !RAZORPAY_KEY_SECRET) {
+    return new Response(JSON.stringify({ error: 'Razorpay keys not configured' }), {
+      status: 500,
+      headers: { 'Content-Type': 'application/json' }
+    });
+  }
 
   const auth = Buffer.from(`${RAZORPAY_KEY_ID}:${RAZORPAY_KEY_SECRET}`).toString('base64');
 
@@ -27,18 +34,23 @@ if (userId == null) {
     if (!response.ok) {
       const errorText = await response.text();
       console.error('Error fetching payments:', errorText);
-      //return res.status(500).json({ error: 'Failed to fetch payments' });
+      return new Response(JSON.stringify({ error: 'Failed to fetch payments' }), {
+        status: 500,
+        headers: { 'Content-Type': 'application/json' }
+      });
     }
 
-    //const data = await response.json();
+    const data = await response.json();
+    return new Response(JSON.stringify(data), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' }
+    });
 
-  
   } catch (error: unknown) {
-    if (error instanceof Error) {
-      console.error('Error upserting payments:', error.message);
-    } else {
-      console.error('Unexpected error:', error);
-    }
-    //res.status(500).json({ error: 'Internal server error' });
+    console.error('Error fetching Razorpay payments:', error);
+    return new Response(JSON.stringify({ error: 'Internal server error' }), {
+      status: 500,
+      headers: { 'Content-Type': 'application/json' }
+    });
   }
 }
