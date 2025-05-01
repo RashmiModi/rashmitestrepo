@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
 };
 module.exports = {
   images: {
-    domains: ['kj46g4md8h.ufs.sh', 'img.clerk.com'], // add all needed domains
+    domains: ['kj46g4md8h.ufs.sh'],
   },
 };
 export default nextConfig;
