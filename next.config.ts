@@ -5,10 +5,20 @@ const nextConfig: NextConfig = {
 };
 module.exports = {
   images: {
+
+
+      remotePatterns: [
+        {
+          protocol: 'https',
+          hostname: 'res.uploadthink.com',
+          pathname: '**',
+        },
+      ],
+   
     domains: ['kj46g4md8h.ufs.sh'],
   },
-  eslint:{
-    IgnoreDuringBuilds:true,
-  }
+  
 };
+
+
 export default nextConfig;

@@ -69,7 +69,7 @@ export default function Navbar({  users }: NavbarProps) {
   // Show no links when logged out
  // const filteredNav = isLoggedIn ? navigation.filter((item) => item.name === 'Shop') : [];
   const userName = user?.username || 'Guest';
-  const userImage = user?.imageUrl || '/default-avatar.png';
+  const userImage = user?.imageUrl || '/src/download.jpg';
 
   const handleSignOut = async () => {
     await signOut();  // Call signOut from useClerk
@@ -128,7 +128,7 @@ export default function Navbar({  users }: NavbarProps) {
                     <MenuButton className="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                       <span className="sr-only">Open user menu</span>
                       <Image
-                        className="h-10 w-10 rounded-full object-cover"
+                        className=" rounded-full object-cover"
                         src={userImage}
                         alt="User" width={20} height={20}
                       />
@@ -157,7 +157,7 @@ export default function Navbar({  users }: NavbarProps) {
                 </Menu>
 
                 {/* Welcome message */}
-                <span className="text-white px-4">Welcome, {userName}</span>
+                <span className="text-white px-4">Welcome, {userName} !</span>
               </>
             ) : (
               <>
