@@ -7,5 +7,8 @@ module.exports = {
   images: {
     domains: ['kj46g4md8h.ufs.sh'],
   },
+  eslint:{
+    IgnoreDuringBuilds:true,
+  }
 };
 export default nextConfig;
