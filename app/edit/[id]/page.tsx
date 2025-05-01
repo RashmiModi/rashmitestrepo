@@ -10,8 +10,9 @@ import { ForminputPost } from "@/types";
 import { SubmitHandler } from "react-hook-form";
 
 
-export const EditPage   = () => {
+
  
+export default function EditPage() {
   const router = useRouter();
   const searchParams = useSearchParams()
   const catid = searchParams?.get('id') 
@@ -60,4 +61,4 @@ export const EditPage   = () => {
   )
 }
 
-export default EditPage;
+

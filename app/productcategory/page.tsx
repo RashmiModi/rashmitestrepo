@@ -56,7 +56,7 @@ const Category =async () => {
 
   const prisma = new PrismaClient()
   
-  export const createProduct=async(data:FormData) =>{
+  export const createProduct=async(data:FormData): Promise<void> =>{
   
       const formcategory= Object.fromEntries(data.entries());
           

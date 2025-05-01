@@ -6,7 +6,8 @@ import { useSearchParams } from 'next/navigation'
 import { useEffect } from 'react';
 import { deleteCategory } from '../deletecategory';
 import { useRouter } from 'next/navigation';
-export const DeletePage  = () => {
+
+export default function DeletePage() {
     const router = useRouter();
  const searchParams = useSearchParams()
   const catid = searchParams?.get('id') 
@@ -46,4 +47,4 @@ router.push('/productcategory');
 }
 
 
-export default DeletePage;
+
