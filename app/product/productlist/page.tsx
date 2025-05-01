@@ -48,7 +48,7 @@ export default function ProductsPage() {
 &nbsp;&nbsp;ADD NEW PRODUCT
 </button>
 </Link>
-      <div className="  mt-20 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 md:grid-cols-4 gap-8">
+      <div className="  mt-20 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
         {products.map((product) => (
           <div key={product.id} className="w-70 h-100 bg-white shadow-md rounded-lg overflow-hidden">
             <Image
